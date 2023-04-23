@@ -1,0 +1,45 @@
+version: '3'
+services:
+  dnsmasq:
+    image: dnsmasq-gui:v1
+    container_name: dnsmasq
+    hostname: dnsmasq
+    restart: on-failure
+    volumes:
+      - "./conf/dnsmasq.conf:/etc/dnsmasq.conf"
+      - "./conf/hosts.dnsmasq:/etc/hosts.dnsmasq"
+      - "./conf/resolv.dnsmasq.conf:/etc/resolv.dnsmasq.conf"
+      - "./php-fpm/dnsmasq.conf:/etc/php81/php-fpm.d/dnsmasq.conf"
+    ports:
+      - "5553:53/tcp"
+      - "5553:53/udp"
+      - "9001:9001/tcp"
+    networks:
+      - dnsmasq-network
+  nginx:
+    image: nginx:latest
+    container_name: nginx_frontend
+    hostname: nginx
+    restart: on-failure
+    volumes:
+      - "./nginx/html:/usr/share/nginx/html"
+      - "./nginx/conf/dnsmasq-gui.conf:/etc/nginx/conf.d/dnsmasq-gui.conf"
+      - "./nginx/conf/fastcgi.conf:/etc/nginx/fastcgi.conf"
+      - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "8081:8080"
+        # - "8443:8443"
+    depends_on:
+      - dnsmasq
+    networks:
+      - dnsmasq-network
+  # alpine:
+  #   image: alpine
+  #   hostname: local
+  #   command: [ "/bin/sh", "-c", "sleep 99999"]
+  #   networks:
+  #     - dnsmasq-network
+
+networks:
+  dnsmasq-network:
+    driver: bridge

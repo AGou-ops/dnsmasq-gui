@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+
+div.form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.formArea {
+    text-align: center;
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Silkscreen', cursive;
+    font-size: 45px;
+}
+
+#results {
+    background-color: lightgray;
+    color: black;
+}
+
+.resolvlist { 
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+}
