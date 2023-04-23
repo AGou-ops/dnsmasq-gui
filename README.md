@@ -1,12 +1,21 @@
+![image](https://user-images.githubusercontent.com/57939102/233824555-2b818df3-cfc4-4680-9ba1-b84707015eb7.png)
+
+*web gui from: https://github.com/nzgamer41/dnsmasqgui*
+
+Docker hub image: https://hub.docker.com/r/suofeiya/dnsmasq-gui
+
 ## build dnsmasq-gui docker image
+
 
 推荐使用：
 
 ```bash
 make build
-# 参考运行参数
-docker run -d -p 5553:53/tcp -p 5553:53/udp -p 5555:8080 --dns 127.0.0.1 --name dnsmasq-with-gui -v `pwd`/conf/hosts.dnsmasq:/etc/hosts.dnsmasq dnsmasq-gui:v1
+# run dnsmasq container
+docker run -d -p 53:53/tcp -p 53:53/udp -p 5555:8080 --dns 127.0.0.1 --name dnsmasq-with-gui -v `pwd`/conf/dnsmasq.conf:/etc/dnsmasq.conf -v `pwd`/conf/hosts.dnsmasq:/etc/hosts.dnsmasq dnsmasq-gui:v2
 ```
+
+default basic auth user and password: `admin:admin`
 
 ## use docker-compose
 

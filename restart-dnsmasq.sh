@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-inotifywait -m -e CLOSE_WRITE /etc/hosts* |
+inotifywait -m -e CLOSE_WRITE /etc/hosts* /etc/dnsmasq.conf |
 while read events;
 do
 	echo $events;

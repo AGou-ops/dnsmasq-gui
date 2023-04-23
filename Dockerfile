@@ -4,7 +4,7 @@ LABEL AUTHOR="AGou-ops"
 RUN apk update && apk add --no-cache php-fpm dnsmasq-dnssec nginx inotify-tools
 
 COPY ./conf/ /etc/
-COPY ./php-fpm/ /etc/php81/php-fpm.d/
+COPY ./php-fpm/ /etc/php7/php-fpm.d/
 COPY ./nginx/conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/html/ /usr/share/nginx/html/
 
@@ -13,6 +13,6 @@ COPY ./run.sh /
 
 RUN chmod +x /run.sh && chmod +x /restart-dnsmasq.sh
 
-ENTRYPOINT [ "/run.sh" ]
+CMD [ "/run.sh" ]
 
 EXPOSE 53/tcp 53/udp 8080/tcp

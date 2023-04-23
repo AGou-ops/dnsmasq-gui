@@ -1,3 +1,6 @@
+<?php
+include('./modifyfile.php');
+?>
 <!doctype html>
 
 <html lang="en">
@@ -19,7 +22,7 @@
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        //document.getElementById("results").innerHTML += this.responseText; 
+        //document.getElementById("results").innerHTML += this.responseText;
         // note '+=', adds result to the existing paragraph, remove the '+' to replace.
         if (this.responseText == "Success"){
             location.reload();
@@ -40,7 +43,7 @@
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        //document.getElementById("results").innerHTML += this.responseText; 
+        //document.getElementById("results").innerHTML += this.responseText;
         // note '+=', adds result to the existing paragraph, remove the '+' to replace.
         if (this.responseText == "Success"){
             location.reload();
@@ -58,7 +61,7 @@
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        //document.getElementById("results").innerHTML += this.responseText; 
+        //document.getElementById("results").innerHTML += this.responseText;
         // note '+=', adds result to the existing paragraph, remove the '+' to replace.
         if (this.responseText == "Success"){
             location.reload();
@@ -76,7 +79,7 @@
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("fileData").innerHTML = this.responseText; 
+        document.getElementById("fileData").innerHTML = this.responseText;
         // note '+=', adds result to the existing paragraph, remove the '+' to replace.
       }
     };
@@ -84,7 +87,7 @@
     xmlhttp.send();
 
     const form = document.getElementById('addupdatedata');
-  
+
     form.addEventListener('submit', (event) => {
     // handle the form data
       addUpdate(form);
@@ -94,7 +97,7 @@
 </head>
 
 <body onload="getInitialData()">
-    <h1>dnsmasq GUI</h1>
+    <h1>dnsmasq WEB GUI</h1>
     <div id="fileData"><p class="resolvlist">Loading...</div>
     <div class="formArea">
       <form id="addupdatedata">
@@ -102,9 +105,26 @@
         <input type="text" id="ip" name="ip">
         <label for="domain">Domain Name:</label>
         <input type="text" id="domain" name="domain"><br><br>
-        <input type="submit" value="Add/Update">
+        <input type="submit" value="Update(Reload Dnsmasq)">
       </form>
     </div>
+    <hr>
+<h1 align="center">Edit dnsmasq.conf</h1>
+<?php if (!empty($error_msg)): ?>
+        <div style="color: red;display: flex; justify-content: center; align-items: center; "><?php echo $error_msg; ?></div>
+    <?php endif; ?>
+    <?php if (!empty($success_msg)): ?>
+        <div style="color: green;display: flex; justify-content: center; align-items: center; "><?php echo $success_msg; ?></div>
+    <?php endif; ?>
+    <div style="display: flex; justify-content: center; align-items: center; ">
+    <form method="post" style="margin:0px auto;text-align: center;display: block;">
+        <textarea name="file_content" rows="20" cols="80"><?php echo htmlspecialchars($file_content); ?></textarea><br>
+        <input type="submit" value="Save">
+    </form>
+    </div>
+
+    <br><br>
+    <hr>
     <!--<button onClick="myFunction('127.0.0.1 testdomain.com');" type="button">Add DNS result</button>-->
     <h4>Responses from server:</h4>
     <p id="results"><?php echo date("d-m-y");?>: Ready</p> <!-- the ajax javascript enters returned GET values here -->
