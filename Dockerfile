@@ -4,7 +4,7 @@ LABEL AUTHOR="AGou-ops"
 RUN apk update && apk add --no-cache php-fpm dnsmasq-dnssec nginx inotify-tools
 
 COPY ./conf/ /etc/
-COPY ./php-fpm/ /etc/php7/php-fpm.d/
+COPY ./php-fpm/ /etc/php8/php-fpm.d/
 COPY ./nginx/conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/html/ /usr/share/nginx/html/
 
