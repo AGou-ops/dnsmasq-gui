@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="./README.md">English</a> · 
+  <a href="./README.es-ES.md">Español</a>
+</p>
+
+
 ![image](https://user-images.githubusercontent.com/57939102/233824555-2b818df3-cfc4-4680-9ba1-b84707015eb7.png)
 
 *web gui from: https://github.com/nzgamer41/dnsmasqgui*
